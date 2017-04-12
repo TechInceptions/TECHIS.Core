@@ -35,8 +35,7 @@ namespace TECHIS.Core
             }
 
             TOutput val;
-            object o;
-            if ((!string.IsNullOrWhiteSpace(arg)) && ObjectReader.TryParseObject(arg, typeof(TOutput), out o))
+            if ((!string.IsNullOrWhiteSpace(arg)) && ObjectReader.TryParseObject(arg, typeof(TOutput), out object o))
             {
                 val = (TOutput)o;
             }
