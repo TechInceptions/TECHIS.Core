@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.6</TargetFramework>
-    <AssemblyVersion>4.0.0.1</AssemblyVersion>
-    <FileVersion>4.0.0.1</FileVersion>
-    <Version>4.0.1</Version>
+    <TargetFramework>netstandard1.5</TargetFramework>
+    <AssemblyVersion>4.0.2.0</AssemblyVersion>
+    <FileVersion>4.0.2.0</FileVersion>
+    <Version>4.0.2</Version>
     <Description>TECH-IS INC. Infrastructure Assembly - Core library</Description>
-    <PackageReleaseNotes>Net Standard Library release</PackageReleaseNotes>
+    <PackageReleaseNotes>downgraded to Net Standard Library 1.5</PackageReleaseNotes>
     <Copyright>Copyright © TECH-IS INC. 2007-2017</Copyright>
     <PackageProjectUrl>http://techinceptions.com/</PackageProjectUrl>
     <Authors>TECH-IS INC.</Authors>
@@ -23,7 +23,7 @@
     <PackageReference Include="System.Runtime.Serialization.Xml" Version="4.3.0" />
     <PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
     <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
-    <PackageReference Include="TECHIS.Serialization.Abstractions" Version="0.2.2" />
+    <PackageReference Include="TECHIS.Serialization.Abstractions" Version="0.2.3" />
   </ItemGroup>
 
 </Project>
