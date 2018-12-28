@@ -1,29 +1,30 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.5;netstandard1.6</TargetFrameworks>
-    <AssemblyVersion>4.0.6.0</AssemblyVersion>
-    <FileVersion>4.0.6.0</FileVersion>
-    <Version>4.0.6</Version>
+    <TargetFrameworks>netstandard1.5;netstandard1.6;netstandard2.0</TargetFrameworks>
+    <AssemblyVersion>4.0.7.0</AssemblyVersion>
+    <FileVersion>4.0.7.0</FileVersion>
+    <Version>4.0.7</Version>
     <Description>TECH-IS INC. Infrastructure Assembly - Core library</Description>
     <PackageReleaseNotes>Updated dependencies</PackageReleaseNotes>
-    <Copyright>Copyright © TECH-IS INC. 2007-2017</Copyright>
+    <Copyright>Copyright © TECH-IS INC. 2007-2018</Copyright>
     <PackageProjectUrl>http://techinceptions.com/</PackageProjectUrl>
-    <Authors>TECH-IS INC.</Authors>
+    <Authors>TECH-IS, Arinze</Authors>
     <Company>TECH-IS INC.</Company>
     <RepositoryType>Git</RepositoryType>
     <PackageTags>netstandard .NET Core</PackageTags>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageOutputPath>C:\Data\PackageRepo</PackageOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="System.Reflection" Version="4.3.0" />
-    <PackageReference Include="System.Reflection.TypeExtensions" Version="4.4.0" />
+    <PackageReference Include="System.Reflection.TypeExtensions" Version="4.5.1" />
     <PackageReference Include="System.Runtime.Serialization.Formatters" Version="4.3.0" />
     <PackageReference Include="System.Runtime.Serialization.Xml" Version="4.3.0" />
     <PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
     <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
-    <PackageReference Include="TECHIS.Serialization.Abstractions" Version="0.2.3" />
+    <PackageReference Include="TECHIS.Serialization.Abstractions" Version="0.2.4" />
   </ItemGroup>
 
 </Project>
