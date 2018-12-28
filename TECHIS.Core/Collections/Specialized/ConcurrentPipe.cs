@@ -4,7 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Concurrent;
 using System.IO;
-using TECHIS.Serialization.Absractions;
+using TECHIS.Serialization.Abstractions;
 //using OxyData;
 //using OxyData.Serialization;
 
