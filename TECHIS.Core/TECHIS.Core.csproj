@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard1.5;netstandard1.6;netstandard2.0</TargetFrameworks>
-    <AssemblyVersion>4.0.7.0</AssemblyVersion>
-    <FileVersion>4.0.7.0</FileVersion>
-    <Version>4.0.7</Version>
+    <AssemblyVersion>4.0.8.0</AssemblyVersion>
+    <FileVersion>4.0.8.0</FileVersion>
+    <Version>4.0.8</Version>
     <Description>TECH-IS INC. Infrastructure Assembly - Core library</Description>
-    <PackageReleaseNotes>Updated dependencies</PackageReleaseNotes>
+    <PackageReleaseNotes>Added functionality from the ExceptionsUtil (from the old Oxydata lib.) class to the exceptions class</PackageReleaseNotes>
     <Copyright>Copyright © TECH-IS INC. 2007-2018</Copyright>
     <PackageProjectUrl>http://techinceptions.com/</PackageProjectUrl>
     <Authors>TECH-IS, Arinze</Authors>
