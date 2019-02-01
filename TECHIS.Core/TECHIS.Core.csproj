@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard1.5;netstandard1.6;netstandard2.0</TargetFrameworks>
-    <AssemblyVersion>4.0.8.0</AssemblyVersion>
-    <FileVersion>4.0.8.0</FileVersion>
-    <Version>4.0.8</Version>
+    <AssemblyVersion>4.0.9.0</AssemblyVersion>
+    <FileVersion>4.0.9.0</FileVersion>
+    <Version>4.0.9</Version>
     <Description>TECH-IS INC. Infrastructure Assembly - Core library</Description>
-    <PackageReleaseNotes>Added functionality from the ExceptionsUtil (from the old Oxydata lib.) class to the exceptions class</PackageReleaseNotes>
+    <PackageReleaseNotes>Updated the object reader with code from EndApps's version of the object reader</PackageReleaseNotes>
     <Copyright>Copyright © TECH-IS INC. 2007-2018</Copyright>
     <PackageProjectUrl>http://techinceptions.com/</PackageProjectUrl>
     <Authors>TECH-IS, Arinze</Authors>
@@ -16,7 +16,8 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageOutputPath>C:\Data\PackageRepo</PackageOutputPath>
   </PropertyGroup>
-
+  <ItemGroup Condition=" '$(TargetFramework)' == 'NETSTANDARD2_0' ">
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="System.Reflection" Version="4.3.0" />
     <PackageReference Include="System.Reflection.TypeExtensions" Version="4.5.1" />
