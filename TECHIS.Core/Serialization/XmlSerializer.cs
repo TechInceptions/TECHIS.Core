@@ -52,12 +52,12 @@ namespace TECHIS.Core.Serialization
 		public static object Deserialize(string data, Type objectType)
 		{
 
-            System.Xml.Serialization.XmlSerializer XS = new System.Xml.Serialization.XmlSerializer(objectType);
+            System.Xml.Serialization.XmlSerializer xs = new System.Xml.Serialization.XmlSerializer(objectType);
 
-            System.IO.MemoryStream ms = new System.IO.MemoryStream(System.Text.UTF8Encoding.UTF8.GetBytes(data));
-
-            return XS.Deserialize(ms);
-
+            using (System.IO.MemoryStream ms = new System.IO.MemoryStream(System.Text.UTF8Encoding.UTF8.GetBytes(data)))
+            {
+                return xs.Deserialize(ms);
+            }
 		}
 
         /// <summary>
@@ -87,9 +87,9 @@ namespace TECHIS.Core.Serialization
         public static object Deserialize(TextReader data, Type objectType)
         {
 
-            System.Xml.Serialization.XmlSerializer XS = new System.Xml.Serialization.XmlSerializer(objectType);
+            System.Xml.Serialization.XmlSerializer xs = new System.Xml.Serialization.XmlSerializer(objectType);
 
-            return XS.Deserialize(data);
+            return xs.Deserialize(data);
 
         }
 
