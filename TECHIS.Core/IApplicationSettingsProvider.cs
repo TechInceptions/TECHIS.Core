@@ -12,5 +12,7 @@ namespace TECHIS.Core
         IEnumerable<KeyValuePair<string, string>> GetAll();
         Task<string> GetAsync(string key);
         string Get(string key);
+        TValue Get<TValue>(string key);
+        TValue Get<TValue>(string key, TValue value);
     }
 }
