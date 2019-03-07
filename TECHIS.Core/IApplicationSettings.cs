@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TECHIS.Core
 {
-    public interface IApplicationSettingsProvider
+    public interface IApplicationSettings
     {
         Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsync();
         IEnumerable<KeyValuePair<string, string>> GetAll();
