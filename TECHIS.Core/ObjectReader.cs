@@ -178,8 +178,7 @@ namespace TECHIS.Core
             {
                 case TypeCode.Boolean:
                     {
-                        bool val;
-                        success = bool.TryParse(input, out val);
+                        success = bool.TryParse(input, out bool val);
                         if (success)
                         {
                             value = val;
@@ -188,8 +187,7 @@ namespace TECHIS.Core
                     break;
                 case TypeCode.Byte:
                     {
-                        byte val;
-                        success = byte.TryParse(input, out val);
+                        success = byte.TryParse(input, out byte val);
                         if (success)
                         {
                             value = val;
@@ -198,8 +196,7 @@ namespace TECHIS.Core
                     break;
                 case TypeCode.Char:
                     {
-                        char val;
-                        success = char.TryParse(input, out val);
+                        success = char.TryParse(input, out char val);
                         if (success)
                         {
                             value = val;
@@ -220,8 +217,7 @@ namespace TECHIS.Core
                     break;
                 case TypeCode.DateTime:
                     {
-                        DateTime val;
-                        success = DateTime.TryParse(input, out val);
+                        success = DateTime.TryParse(input, out DateTime val);
                         if (success)
                         {
                             value = val;
@@ -230,8 +226,7 @@ namespace TECHIS.Core
                     break;
                 case TypeCode.Decimal:
                     {
-                        Decimal val;
-                        success = Decimal.TryParse(input, out val);
+                        success = Decimal.TryParse(input, out decimal val);
                         if (success)
                         {
                             value = val;
@@ -240,8 +235,7 @@ namespace TECHIS.Core
                     break;
                 case TypeCode.Double:
                     {
-                        Double val;
-                        success = Double.TryParse(input, out val);
+                        success = Double.TryParse(input, out double val);
                         if (success)
                         {
                             value = val;
@@ -250,8 +244,7 @@ namespace TECHIS.Core
                     break;
                 case TypeCode.Int16:
                     {
-                        Int16 val;
-                        success = Int16.TryParse(input, out val);
+                        success = Int16.TryParse(input, out short val);
                         if (success)
                         {
                             value = val;
@@ -260,8 +253,7 @@ namespace TECHIS.Core
                     break;
                 case TypeCode.Int32:
                     {
-                        Int32 val;
-                        success = Int32.TryParse(input, out val);
+                        success = Int32.TryParse(input, out int val);
                         if (success)
                         {
                             value = val;
@@ -270,8 +262,7 @@ namespace TECHIS.Core
                     break;
                 case TypeCode.Int64:
                     {
-                        Int64 val;
-                        success = Int64.TryParse(input, out val);
+                        success = Int64.TryParse(input, out long val);
                         if (success)
                         {
                             value = val;
@@ -280,8 +271,7 @@ namespace TECHIS.Core
                     break;
                 case TypeCode.SByte:
                     {
-                        SByte val;
-                        success = SByte.TryParse(input, out val);
+                        success = SByte.TryParse(input, out sbyte val);
                         if (success)
                         {
                             value = val;
@@ -290,8 +280,7 @@ namespace TECHIS.Core
                     break;
                 case TypeCode.Single:
                     {
-                        Single val;
-                        success = Single.TryParse(input, out val);
+                        success = Single.TryParse(input, out float val);
                         if (success)
                         {
                             value = val;
@@ -304,8 +293,7 @@ namespace TECHIS.Core
                     break;
                 case TypeCode.UInt16:
                     {
-                        UInt16 val;
-                        success = UInt16.TryParse(input, out val);
+                        success = UInt16.TryParse(input, out ushort val);
                         if (success)
                         {
                             value = val;
@@ -314,8 +302,7 @@ namespace TECHIS.Core
                     break;
                 case TypeCode.UInt32:
                     {
-                        UInt32 val;
-                        success = UInt32.TryParse(input, out val);
+                        success = UInt32.TryParse(input, out uint val);
                         if (success)
                         {
                             value = val;
@@ -324,8 +311,7 @@ namespace TECHIS.Core
                     break;
                 case TypeCode.UInt64:
                     {
-                        UInt64 val;
-                        success = UInt64.TryParse(input, out val);
+                        success = UInt64.TryParse(input, out ulong val);
                         if (success)
                         {
                             value = val;
