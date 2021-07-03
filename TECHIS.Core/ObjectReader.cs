@@ -87,7 +87,14 @@ namespace TECHIS.Core
             switch (typecode)
             {
                 case TypeCode.Boolean:
-                    value = bool.Parse(input);
+                    if (IsBinary(input, out bool boolResult))
+                    {
+                        value = boolResult;
+                    }
+                    else
+                    {
+                        value = bool.Parse(input);
+                    }
                     break;
                 case TypeCode.Byte:
                     value = byte.Parse(input);
@@ -148,6 +155,27 @@ namespace TECHIS.Core
             }
             return value;
         }
+        /// <summary>
+        /// Convert null, 0 and 1 to accepted string values
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static bool IsBinary(string input, out bool output)
+        {
+            switch (input)
+            {
+                case "1":
+                    output = true;
+                    return true;
+                case "0":
+                    output = false;
+                    return true;
+                default:
+                    output = false;
+                    return false;
+
+            }
+        }
 
         public static object ParseObject(string input, string typeName)
         {
@@ -178,11 +206,19 @@ namespace TECHIS.Core
             {
                 case TypeCode.Boolean:
                     {
-                        success = bool.TryParse(input, out bool val);
-                        if (success)
+                        if (success = IsBinary(input, out bool boolResult))
                         {
-                            value = val;
+                            value = boolResult;
                         }
+                        else
+                        {
+                            success = bool.TryParse(input, out bool val);
+                            if (success)
+                            {
+                                value = val;
+                            }
+                        }
+
                     }
                     break;
                 case TypeCode.Byte:
