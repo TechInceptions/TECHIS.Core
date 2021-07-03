@@ -2,11 +2,12 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard1.5;netstandard1.6;netstandard2.0</TargetFrameworks>
-    <AssemblyVersion>4.0.16.0</AssemblyVersion>
-    <FileVersion>4.0.16.0</FileVersion>
-    <Version>4.0.16</Version>
+    <AssemblyVersion>4.1.0.0</AssemblyVersion>
+    <FileVersion>4.1.0.0</FileVersion>
+    <Version>4.1.0</Version>
     <Description>TECH-IS INC. Infrastructure Assembly - Core library</Description>
-    <PackageReleaseNotes>Updated the object reader with code from EndApps's version of the object reader</PackageReleaseNotes>
+    <PackageReleaseNotes>Added IsBinary to ObjectReader and used that with the ParseObject for the boolean check. 
+    This will change the behaviour of ParseObject and TryParseObject when a boolean value is being read. Example, the value "1" will now be read as true, instead of throwing an exception</PackageReleaseNotes>
     <Copyright>Copyright © TECH-IS INC. 2007-2020</Copyright>
     <PackageProjectUrl>http://techinceptions.com/</PackageProjectUrl>
     <Authors>TECH-IS, Arinze</Authors>
