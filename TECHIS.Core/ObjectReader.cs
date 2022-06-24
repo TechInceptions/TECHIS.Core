@@ -87,7 +87,14 @@ namespace TECHIS.Core
             switch (typecode)
             {
                 case TypeCode.Boolean:
-                    value = bool.Parse(input);
+                    if (IsBinary(input, out bool boolResult))
+                    {
+                        value = boolResult;
+                    }
+                    else
+                    {
+                        value = bool.Parse(input);
+                    }
                     break;
                 case TypeCode.Byte:
                     value = byte.Parse(input);
@@ -95,16 +102,8 @@ namespace TECHIS.Core
                 case TypeCode.Char:
                     value = char.Parse(input);
                     break;
-#if NETSTANDARD1_5
-                case TypeExtensions.TypeCodeDbNull:
-                    value = TypeExtensions.DbNullValue;
-#elif NETSTANDARD1_6
-                    case TypeExtensions.TypeCodeDbNull:
-                    value = TypeExtensions.DbNullValue;
-#else
                     case TypeCode.DBNull:
                      value = DBNull.Value;
-#endif
                     break;
                 case TypeCode.DateTime:
                     value = DateTime.Parse(input);
@@ -148,6 +147,27 @@ namespace TECHIS.Core
             }
             return value;
         }
+        /// <summary>
+        /// Convert null, 0 and 1 to accepted string values
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static bool IsBinary(string input, out bool output)
+        {
+            switch (input)
+            {
+                case "1":
+                    output = true;
+                    return true;
+                case "0":
+                    output = false;
+                    return true;
+                default:
+                    output = false;
+                    return false;
+
+            }
+        }
 
         public static object ParseObject(string input, string typeName)
         {
@@ -178,18 +198,24 @@ namespace TECHIS.Core
             {
                 case TypeCode.Boolean:
                     {
-                        bool val;
-                        success = bool.TryParse(input, out val);
-                        if (success)
+                        if (success = IsBinary(input, out bool boolResult))
                         {
-                            value = val;
+                            value = boolResult;
                         }
+                        else
+                        {
+                            success = bool.TryParse(input, out bool val);
+                            if (success)
+                            {
+                                value = val;
+                            }
+                        }
+
                     }
                     break;
                 case TypeCode.Byte:
                     {
-                        byte val;
-                        success = byte.TryParse(input, out val);
+                        success = byte.TryParse(input, out byte val);
                         if (success)
                         {
                             value = val;
@@ -198,30 +224,22 @@ namespace TECHIS.Core
                     break;
                 case TypeCode.Char:
                     {
-                        char val;
-                        success = char.TryParse(input, out val);
+                        success = char.TryParse(input, out char val);
                         if (success)
                         {
                             value = val;
                         }
                     }
                     break;
-#if NETSTANDARD1_5
-                    case TypeExtensions.TypeCodeDbNull:
-                    value = TypeExtensions.DbNullValue;
-#elif NETSTANDARD1_6
-                    case TypeExtensions.TypeCodeDbNull:
-                    value = TypeExtensions.DbNullValue;
-#else
+
                     case TypeCode.DBNull:
                      value = DBNull.Value;
-#endif
+
                     success = true;
                     break;
                 case TypeCode.DateTime:
                     {
-                        DateTime val;
-                        success = DateTime.TryParse(input, out val);
+                        success = DateTime.TryParse(input, out DateTime val);
                         if (success)
                         {
                             value = val;
@@ -230,8 +248,7 @@ namespace TECHIS.Core
                     break;
                 case TypeCode.Decimal:
                     {
-                        Decimal val;
-                        success = Decimal.TryParse(input, out val);
+                        success = Decimal.TryParse(input, out decimal val);
                         if (success)
                         {
                             value = val;
@@ -240,8 +257,7 @@ namespace TECHIS.Core
                     break;
                 case TypeCode.Double:
                     {
-                        Double val;
-                        success = Double.TryParse(input, out val);
+                        success = Double.TryParse(input, out double val);
                         if (success)
                         {
                             value = val;
@@ -250,8 +266,7 @@ namespace TECHIS.Core
                     break;
                 case TypeCode.Int16:
                     {
-                        Int16 val;
-                        success = Int16.TryParse(input, out val);
+                        success = Int16.TryParse(input, out short val);
                         if (success)
                         {
                             value = val;
@@ -260,8 +275,7 @@ namespace TECHIS.Core
                     break;
                 case TypeCode.Int32:
                     {
-                        Int32 val;
-                        success = Int32.TryParse(input, out val);
+                        success = Int32.TryParse(input, out int val);
                         if (success)
                         {
                             value = val;
@@ -270,8 +284,7 @@ namespace TECHIS.Core
                     break;
                 case TypeCode.Int64:
                     {
-                        Int64 val;
-                        success = Int64.TryParse(input, out val);
+                        success = Int64.TryParse(input, out long val);
                         if (success)
                         {
                             value = val;
@@ -280,8 +293,7 @@ namespace TECHIS.Core
                     break;
                 case TypeCode.SByte:
                     {
-                        SByte val;
-                        success = SByte.TryParse(input, out val);
+                        success = SByte.TryParse(input, out sbyte val);
                         if (success)
                         {
                             value = val;
@@ -290,8 +302,7 @@ namespace TECHIS.Core
                     break;
                 case TypeCode.Single:
                     {
-                        Single val;
-                        success = Single.TryParse(input, out val);
+                        success = Single.TryParse(input, out float val);
                         if (success)
                         {
                             value = val;
@@ -304,8 +315,7 @@ namespace TECHIS.Core
                     break;
                 case TypeCode.UInt16:
                     {
-                        UInt16 val;
-                        success = UInt16.TryParse(input, out val);
+                        success = UInt16.TryParse(input, out ushort val);
                         if (success)
                         {
                             value = val;
@@ -314,8 +324,7 @@ namespace TECHIS.Core
                     break;
                 case TypeCode.UInt32:
                     {
-                        UInt32 val;
-                        success = UInt32.TryParse(input, out val);
+                        success = UInt32.TryParse(input, out uint val);
                         if (success)
                         {
                             value = val;
@@ -324,8 +333,7 @@ namespace TECHIS.Core
                     break;
                 case TypeCode.UInt64:
                     {
-                        UInt64 val;
-                        success = UInt64.TryParse(input, out val);
+                        success = UInt64.TryParse(input, out ulong val);
                         if (success)
                         {
                             value = val;
@@ -434,14 +442,7 @@ namespace TECHIS.Core
                     if (i == numberOfTries)
                         throw;
 
-
-#if NETSTANDARD1_5
-                    
-#elif NETSTANDARD1_6
-                   
-#else
                      System.Threading.Thread.Sleep(delayOnRetry);
-#endif
                 }
             }
 
@@ -519,16 +520,10 @@ namespace TECHIS.Core
                 case TypeCode.Char:
                     value = char.Parse(input);
                     break;
-#if NETSTANDARD1_5
-                case TypeExtensions.TypeCodeDbNull:
-                    value = TypeExtensions.DbNullValue;
-#elif NETSTANDARD1_6
-                    case TypeExtensions.TypeCodeDbNull:
-                    value = TypeExtensions.DbNullValue;
-#else
+
                     case TypeCode.DBNull:
                      value = DBNull.Value;
-#endif
+
                     break;
                 case TypeCode.DateTime:
                     value = DateTime.Parse(input);

@@ -12,6 +12,11 @@ namespace TECHIS.Core
 
         public static TypeCode GetTypeCode(this Type type)
         {
+            if (Type.GetTypeCode(type) == TypeCode.String)
+            {
+                return TypeCode.String;
+            }
+
             if (!type.IsValueType())
             {
                 return TypeCode.Object;

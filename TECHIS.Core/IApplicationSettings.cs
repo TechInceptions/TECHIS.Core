@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace TECHIS.Core
 {
-    public interface IApplicationSettingsProvider
+    public interface IApplicationSettings
     {
         Task<IEnumerable<KeyValuePair<string, string>>> GetAllAsync();
         IEnumerable<KeyValuePair<string, string>> GetAll();
         Task<string> GetAsync(string key);
         string Get(string key);
-        TValue Get<TValue>(string key);
-        TValue Get<TValue>(string key, TValue value);
+        TConfig Get<TConfig>(string sectionName);
+        Task<TConfig> GetAsync<TConfig>(string sectionName);
     }
 }

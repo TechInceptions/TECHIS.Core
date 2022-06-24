@@ -22,5 +22,7 @@ namespace TECHIS.Core
 
             return sb;
         }
+
+        public static IApplicationSettings StartUpApplicationSettings { get; set; }
     }
 }
