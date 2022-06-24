@@ -102,16 +102,8 @@ namespace TECHIS.Core
                 case TypeCode.Char:
                     value = char.Parse(input);
                     break;
-#if NETSTANDARD1_5
-                case TypeExtensions.TypeCodeDbNull:
-                    value = TypeExtensions.DbNullValue;
-#elif NETSTANDARD1_6
-                    case TypeExtensions.TypeCodeDbNull:
-                    value = TypeExtensions.DbNullValue;
-#else
                     case TypeCode.DBNull:
                      value = DBNull.Value;
-#endif
                     break;
                 case TypeCode.DateTime:
                     value = DateTime.Parse(input);
@@ -239,16 +231,10 @@ namespace TECHIS.Core
                         }
                     }
                     break;
-#if NETSTANDARD1_5
-                    case TypeExtensions.TypeCodeDbNull:
-                    value = TypeExtensions.DbNullValue;
-#elif NETSTANDARD1_6
-                    case TypeExtensions.TypeCodeDbNull:
-                    value = TypeExtensions.DbNullValue;
-#else
+
                     case TypeCode.DBNull:
                      value = DBNull.Value;
-#endif
+
                     success = true;
                     break;
                 case TypeCode.DateTime:
@@ -456,14 +442,7 @@ namespace TECHIS.Core
                     if (i == numberOfTries)
                         throw;
 
-
-#if NETSTANDARD1_5
-                    
-#elif NETSTANDARD1_6
-                   
-#else
                      System.Threading.Thread.Sleep(delayOnRetry);
-#endif
                 }
             }
 
@@ -541,16 +520,10 @@ namespace TECHIS.Core
                 case TypeCode.Char:
                     value = char.Parse(input);
                     break;
-#if NETSTANDARD1_5
-                case TypeExtensions.TypeCodeDbNull:
-                    value = TypeExtensions.DbNullValue;
-#elif NETSTANDARD1_6
-                    case TypeExtensions.TypeCodeDbNull:
-                    value = TypeExtensions.DbNullValue;
-#else
+
                     case TypeCode.DBNull:
                      value = DBNull.Value;
-#endif
+
                     break;
                 case TypeCode.DateTime:
                     value = DateTime.Parse(input);
