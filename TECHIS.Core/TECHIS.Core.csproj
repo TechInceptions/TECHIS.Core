@@ -2,9 +2,9 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
-    <AssemblyVersion>5.1.0</AssemblyVersion>
-    <FileVersion>5.1.0</FileVersion>
-    <Version>5.1.0</Version>
+    <AssemblyVersion>5.1.1</AssemblyVersion>
+    <FileVersion>5.1.1</FileVersion>
+    <Version>5.1.1</Version>
     <Description>TECH-IS INC. Infrastructure Assembly - Core library</Description>
     <PackageReleaseNotes>Added IsBinary to ObjectReader and used that with the ParseObject for the boolean check. 
     This will change the behaviour of ParseObject and TryParseObject when a boolean value is being read. Example, the value "1" will now be read as true, instead of throwing an exception</PackageReleaseNotes>
