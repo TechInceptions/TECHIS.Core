@@ -70,5 +70,25 @@ namespace TECHIS.EndApps.App.Tests
 
             Assert.Equal(output1, result);
         }
+        [Fact]
+        public void RemoveAccents_SlugifyTitle_Length100()
+        {
+            var sample1 = @"Is There the - top - of - an encoding where an accented character like á or ä is treated?";
+            var output1 = @"is-there-the-top-of-an-encoding-where-an-accented-character-like-a-or-a-is-treated";
+
+            var result = StringUtil.SlugifyTitle(sample1,100);
+
+            Assert.Equal(output1, result);
+        }
+        [Fact]
+        public void RemoveAccents_SlugifyTitle_Length50()
+        {
+            var sample1 = @"Is There the - top - of - an encoding where an accented character like á or ä is treated?";
+            var output1 = @"is-there-the-top-of-an-encoding-where-an-accented-character";
+
+            var result = StringUtil.SlugifyTitle(sample1, 60);
+
+            Assert.Equal(output1, result);
+        }
     }
 }

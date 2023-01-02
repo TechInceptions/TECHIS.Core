@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Logging;
+using static System.Net.Mime.MediaTypeNames;
 
 
 namespace TECHIS.Core.Text
@@ -76,7 +78,7 @@ namespace TECHIS.Core.Text
             // Return the slug.  
             return output;
         }
-        public static string Slugify2(this string phrase, bool asLowerCase=false, bool removeAccents=false, string pattern= @"[^A-Za-z0-9\s-]", ILogger logger = null)
+        public static string Slugify2(this string phrase, bool asLowerCase=false, bool removeAccents=false, string pattern= @"[^A-Za-z0-9\s-]", ILogger logger = null, bool removeAdditionalDashes=false)
         {
             string output = removeAccents ? RemoveAccents(phrase, logger) : phrase;
             if (string.IsNullOrWhiteSpace(output))
@@ -96,15 +98,28 @@ namespace TECHIS.Core.Text
             {
                 return string.Empty;
             }
-
+            var spacePattern = removeAdditionalDashes ? @"[\s-]+" : @"\s+";
             // Remove all additional spaces in favour of just one.  
-            output = Regex.Replace(output, @"\s+", " ").Trim();
+            output = Regex.Replace(output, spacePattern, " ").Trim();
 
             // Replace all spaces with the hyphen.  
             output = Regex.Replace(output, @"\s", "-");
 
             // Return the slug.  
             return output;
+        }
+        public static string SlugifyTitle(this string phrase, int approximateMaxLength = 50, ILogger logger = null)
+        {
+            if (string.IsNullOrWhiteSpace(phrase))
+            {
+                return "-";
+            }
+            var pattern = @"^(.{" + approximateMaxLength.ToString() + @"}[^_\s-]*).*";
+            //max length 50; will be long if required to complete the last word
+            var text = Regex.Replace(phrase, pattern, "$1"); 
+            //var text = Regex.Match(phrase, pattern).Value;
+
+            return Slugify2(text, true, true, removeAdditionalDashes: true);
         }
 
         /// <summary>  
