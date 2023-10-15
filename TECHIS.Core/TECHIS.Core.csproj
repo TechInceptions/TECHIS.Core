@@ -2,12 +2,11 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
-    <Version>5.2.1</Version>
+    <Version>5.3.0</Version>
 	  <IncludeSymbols>true</IncludeSymbols>
 	  <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <Description>TECH-IS INC. Infrastructure Assembly - Core library</Description>
-    <PackageReleaseNotes>Added IsBinary to ObjectReader and used that with the ParseObject for the boolean check. 
-    This will change the behaviour of ParseObject and TryParseObject when a boolean value is being read. Example, the value "1" will now be read as true, instead of throwing an exception</PackageReleaseNotes>
+    <PackageReleaseNotes>Updated IHttpService</PackageReleaseNotes>
     <Copyright>Copyright © TECH-IS INC. 2007-2020</Copyright>
     <PackageProjectUrl>http://techinceptions.com/</PackageProjectUrl>
     <Authors>TECH-IS, Arinze</Authors>
@@ -20,6 +19,7 @@
   <ItemGroup Condition=" '$(TargetFramework)' == 'NETSTANDARD2_0' ">
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.3" />
     <PackageReference Include="System.Reflection" Version="4.3.0" />
     <PackageReference Include="System.Reflection.TypeExtensions" Version="4.7.0" />
@@ -31,7 +31,7 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
 	</ItemGroup>
 
 </Project>
