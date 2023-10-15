@@ -13,10 +13,17 @@ namespace TECHIS.Core
     public class HttpService : IHttpService
     {
         private HttpClient _webClient;
+        private TimeSpan? _OriginalTimeout;
 
         public HttpService(HttpClient webClient)
         {
             _webClient = webClient;
+            PreserveOriginalTimeout();
+        }
+        public HttpService(IHttpClientFactory httpClientFactory)
+        {
+            _webClient = httpClientFactory.CreateClient();
+            PreserveOriginalTimeout();
         }
         public async Task<HttpResponseMessage> GetResponse(Uri uri, HttpMethod httpMethod, string contentType, IDictionary<string, string> headers, string postBody = null)
         {
@@ -113,7 +120,7 @@ namespace TECHIS.Core
                 return result;
             }
         }
-        public async Task<byte[]> GetContentAsByteArray(HttpResponseMessage response)
+        public static async Task<byte[]> GetContentAsByteArray(HttpResponseMessage response)
         {
             byte[] result;
             //check encoding
@@ -130,7 +137,7 @@ namespace TECHIS.Core
 
             return result;
         }
-        public async Task<string> GetContentAsString(HttpResponseMessage response)
+        public static async Task<string> GetContentAsString(HttpResponseMessage response)
         {
             string result;
             //check encoding
@@ -205,5 +212,17 @@ namespace TECHIS.Core
             return httpMethod;
         }
 
+        public void SetTimeout(int timeoutInSeconds)
+        {
+            if (_webClient != null)
+            {
+                _webClient.Timeout = TimeSpan.FromSeconds(timeoutInSeconds);
+            }
+        }
+
+        private void PreserveOriginalTimeout()
+        {
+            _OriginalTimeout = _webClient?.Timeout;
+        }
     }
 }

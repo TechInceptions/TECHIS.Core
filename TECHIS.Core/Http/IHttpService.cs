@@ -8,6 +8,8 @@ namespace TECHIS.Core
 {
     public interface IHttpService
     {
+        void SetTimeout(int timeoutInSeconds);
+
         Task<HttpResponseMessage> GetResponse(Uri uri, HttpMethod httpMethod, string contentType, IDictionary<string, string> headers, string postBody = null);
 
         Task<HttpResult<string>> GetBody(Uri uri, HttpMethod httpMethod, string contentType, IDictionary<string, string> headers, string postBody = null);
