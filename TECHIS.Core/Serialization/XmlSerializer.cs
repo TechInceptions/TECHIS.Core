@@ -68,7 +68,6 @@ namespace TECHIS.Core.Serialization
 
             System.Xml.Serialization.XmlSerializer xs = new System.Xml.Serialization.XmlSerializer(objectType);
             object obj;
-            //System.IO.MemoryStream ms = new System.IO.MemoryStream(System.Text.UTF8Encoding.UTF8.GetBytes(data));
             using (StringReader sr = new StringReader(data))
             {
                 using (XmlReader xr = XmlReader.Create(sr))
