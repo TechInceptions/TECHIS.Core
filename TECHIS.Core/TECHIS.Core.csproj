@@ -8,7 +8,7 @@
     <Description>TECH-IS INC. Infrastructure Assembly - Core library</Description>
     <PackageReleaseNotes>Updated IHttpService</PackageReleaseNotes>
     <Copyright>Copyright © TECH-IS INC. 2007-2024</Copyright>
-    <PackageProjectUrl>http://techinceptions.com/</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/TechInceptions/TECHIS.Core</PackageProjectUrl>
     <Authors>TECH-IS, Arinze</Authors>
     <Company>TECH-IS INC.</Company>
     <RepositoryType>Git</RepositoryType>
