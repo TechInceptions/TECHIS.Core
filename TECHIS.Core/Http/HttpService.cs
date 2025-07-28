@@ -99,27 +99,38 @@ namespace TECHIS.Core
             }
         }
 
-        public async Task<HttpResult<byte[]>> GetBytes(Uri uri, HttpMethod httpMethod, string contentType, IDictionary<string, string> headers, string postBody = null)
+        public async Task<HttpResult<byte[]>> GetBytes( Uri uri, HttpMethod httpMethod, string contentType, IDictionary<string, string> headers, string postBody = null)
         {
-            HttpResult<byte[]> result;
             using (var response = await GetResponse(uri, httpMethod, contentType, headers, postBody))
             {
                 var body = await GetContentAsByteArray(response);
+                var mediaType = GetContentType(response, body);
+
+                HttpResult<byte[]> result;
                 if (response?.IsSuccessStatusCode == true)
                 {
-                    result = new HttpResult<byte[]>(body, response.StatusCode, response.ReasonPhrase, true) { ContentType = response.Content.Headers.ContentType.MediaType  };
+                    result = new HttpResult<byte[]>(body, response.StatusCode, response.ReasonPhrase, true)
+                    {
+                        ContentType = mediaType
+                    };
                 }
                 else
                 {
                     result = new HttpResult<byte[]>(body, response.StatusCode, response.ReasonPhrase, false)
                     {
+                        ContentType = mediaType,                                // <-- set for failures too
                         Message = await GetContentAsString(response)
                     };
                 }
 
+                // length property, set it here:
+                result.ContentLength = response.Content?.Headers?.ContentLength ?? body?.LongLength ?? 0L;
+
                 return result;
             }
         }
+
+
         public static async Task<byte[]> GetContentAsByteArray(HttpResponseMessage response)
         {
             byte[] result;
@@ -224,5 +235,60 @@ namespace TECHIS.Core
         {
             _OriginalTimeout = _webClient?.Timeout;
         }
+
+        private static string GetContentType(HttpResponseMessage response, byte[] body)
+        {
+            var mediaType = response.Content?.Headers?.ContentType?.MediaType;
+
+            if (string.IsNullOrWhiteSpace(mediaType))
+            {
+                if (response.Content?.Headers?.TryGetValues("Content-Type", out var vals) == true)
+                {
+                    var raw = vals.FirstOrDefault();
+                    if (!string.IsNullOrWhiteSpace(raw))
+                        mediaType = raw.Split(';')[0].Trim(); // drop params if any
+                }
+            }
+
+            if (string.IsNullOrWhiteSpace(mediaType))
+            {
+                mediaType = DetectMimeFromBytes(body) ?? "application/octet-stream";
+            }
+            return mediaType;
+        }
+        private static string DetectMimeFromBytes(byte[] b)
+        {
+            if (b == null || b.Length < 12)
+                return null;
+
+            // JPEG FF D8 FF
+            if (b[0] == 0xFF && b[1] == 0xD8 && b[2] == 0xFF)
+                return "image/jpeg";
+
+            // PNG 89 50 4E 47 0D 0A 1A 0A
+            if (b.Length >= 8 && b[0] == 0x89 && b[1] == 0x50 && b[2] == 0x4E && b[3] == 0x47 && b[4] == 0x0D && b[5] == 0x0A && b[6] == 0x1A && b[7] == 0x0A)
+                return "image/png";
+
+            // GIF "GIF87a"/"GIF89a"
+            if (b.Length >= 6 && b[0] == 0x47 && b[1] == 0x49 && b[2] == 0x46 && b[3] == 0x38 && (b[4] == 0x39 || b[4] == 0x37) && b[5] == 0x61)
+                return "image/gif";
+
+            // WEBP: "RIFF....WEBP"
+            if (b.Length >= 12 && b[0] == 0x52 && b[1] == 0x49 && b[2] == 0x46 && b[3] == 0x46 && b[8] == 0x57 && b[9] == 0x45 && b[10] == 0x42 && b[11] == 0x50)
+                return "image/webp";
+
+            // AVIF: ftyp avif/avis/avif
+            if (b.Length >= 12 && b[4] == 0x66 && b[5] == 0x74 && b[6] == 0x79 && b[7] == 0x70 &&
+                (b[8] == 0x61 && b[9] == 0x76 && b[10] == 0x69 && (b[11] == 0x66 || b[11] == 0x73)))
+                return "image/avif";
+
+            // SVG (text) – crude but effective
+            var text = System.Text.Encoding.UTF8.GetString(b, 0, Math.Min(b.Length, 256)).TrimStart('\uFEFF', ' ', '\t', '\r', '\n');
+            if (text.StartsWith("<svg", StringComparison.OrdinalIgnoreCase))
+                return "image/svg+xml";
+
+            return null;
+        }
+
     }
 }

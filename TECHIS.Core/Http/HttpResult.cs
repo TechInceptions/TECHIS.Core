@@ -17,6 +17,11 @@ namespace TECHIS.Core
         public string Message { get; set; }
         public string InitialRequestBody { get; set; }
         public string ContentType { get; set; }
+        public long ContentLength
+        {
+            get;
+            set;
+        }
 
         public HttpResult(TBody body, HttpStatusCode statusCode, string reason, bool succeeded)
         {
