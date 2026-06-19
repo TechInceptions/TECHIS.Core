@@ -2,13 +2,13 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
-    <Version>5.5.0</Version>
+    <Version>6.0.3</Version>
 	  <IncludeSymbols>true</IncludeSymbols>
 	  <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <Description>TECH-IS INC. Infrastructure Assembly - Core library</Description>
     <PackageReleaseNotes>Updated IHttpService</PackageReleaseNotes>
     <Copyright>Copyright © TECH-IS INC. 2007-2024</Copyright>
-    <PackageProjectUrl>http://techinceptions.com/</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/TechInceptions/TECHIS.Core</PackageProjectUrl>
     <Authors>TECH-IS, Arinze</Authors>
     <Company>TECH-IS INC.</Company>
     <RepositoryType>Git</RepositoryType>
@@ -19,19 +19,20 @@
   <ItemGroup Condition=" '$(TargetFramework)' == 'NETSTANDARD2_0' ">
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.3" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.8" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.8" />
     <PackageReference Include="System.Reflection" Version="4.3.0" />
     <PackageReference Include="System.Reflection.TypeExtensions" Version="4.7.0" />
     <PackageReference Include="System.Runtime.Serialization.Formatters" Version="4.3.0" />
     <PackageReference Include="System.Runtime.Serialization.Xml" Version="4.3.0" />
+    <PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
     <PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
     <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
-    <PackageReference Include="TECHIS.Serialization.Abstractions" Version="0.2.4" />
+    <PackageReference Include="TECHIS.Serialization.Abstractions" Version="1.0.0" />
   </ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All" />
+		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="10.0.300" PrivateAssets="All" />
 	</ItemGroup>
 
 </Project>
